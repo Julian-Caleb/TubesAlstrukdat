@@ -1,0 +1,9 @@
+{
+    "C_Cpp.errorSquiggles": "disabled",
+    "files.associations": {
+        "mesinkata.h": "c",
+        "boolean.h": "c",
+        "profile.h": "c",
+        "user.h": "c"
+    }
+}

@@ -10,6 +10,7 @@
         "pcolor.h": "c",
         "login.h": "c",
         "teman.h": "c",
-        "permintaanpertemanan.h": "c"
+        "permintaanpertemanan.h": "c",
+        "typeinfo": "c"
     }
 }

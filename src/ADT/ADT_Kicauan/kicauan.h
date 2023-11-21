@@ -27,6 +27,7 @@ typedef struct
 } Kicauan;
 
 extern Kicauan kicauan;
+extern int availableId;
 
 boolean isKicauanFull();
 

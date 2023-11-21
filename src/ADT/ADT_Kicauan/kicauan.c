@@ -2,6 +2,7 @@
 #include "kicauan.h"
 
 Kicauan kicauan;
+int availableId;
 
 boolean isKicauanFull() {
     return (kicauan.nEff == kicauan.capacity);
@@ -13,7 +14,8 @@ boolean isKicauanEmpty() {
 
 void CreateKicauanExtern() {
     kicauan.buffer = (Kicau*)malloc(100 * sizeof(Kicau));
-    
+    availableId = 0;
+
     if (kicauan.buffer != NULL) {
         kicauan.nEff = 0;
         kicauan.capacity = 100;
@@ -32,7 +34,8 @@ Kicau MakeKicau() {
     if(isKicauAllSpace(currentWord)) {
         printf("Kicau tidak boleh hanya berisi spasi!");
     } else {
-        kicau.id = kicauan.nEff + 1;
+        kicau.id = availableId + 1;
+        availableId++;
         kicau.nama = CopyToNewWord(currentUser.username);
         kicau.time = setTime();
         kicau.kicau = CopyToNewWord(currentWord);
@@ -100,7 +103,6 @@ void SukaKicau(int id) {
 }
 
 boolean isIdExist(int id) {
-    printf("%d", kicauan.buffer[id-1].id);
     return (id <= kicauan.nEff && id == kicauan.buffer[id-1].id);
 }
 

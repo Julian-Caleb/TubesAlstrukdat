@@ -11,7 +11,7 @@ SRC_TEST = test.c
 OBJ_TEST = $(SRC_TEST:.c=.o)
 
 # Driver program
-SRC_DRIVER = Functions/Teman/driver.c
+SRC_DRIVER = ADT/ADT_PermintaanPertemanan/driver.c
 OBJ_DRIVER = $(SRC_DRIVER:.c=.o)
 
 # ADT MesinKar
@@ -33,6 +33,10 @@ OBJ_MATRIX = $(SRC_MATRIX:.c=.o)
 # ADT Graf
 SRC_GRAF = ADT/ADT_Graf/graf.c
 OBJ_GRAF = $(SRC_GRAF:.c=.o)
+
+# ADT PermintaanPertemanan
+SRC_PERMINTAANPERTEMANAN = ADT/ADT_PermintaanPertemanan/permintaanpertemanan.c
+OBJ_PERMINTAANPERTEMANAN = $(SRC_PERMINTAANPERTEMANAN:.c=.o)
 
 # ADT User
 SRC_USER = ADT/ADT_User/user.c
@@ -64,14 +68,14 @@ OBJ_SIMPANDANMUAT = $(SRC_SIMPANDANMUAT:.c=.o)
 all: main_program 
 
 # Compiling and building
-main_program: $(OBJ_DRIVER) $(OBJ_MESINKAR) $(OBJ_MESINKATA) $(OBJ_MESINTXT) $(OBJ_MATRIX) $(OBJ_GRAF) $(OBJ_USER) $(OBJ_PROFILE) $(OBJ_LOGIN) $(OBJ_PCOLOR) $(OBJ_TEMAN) $(OBJ_SIMPANDANMUAT)
+main_program: $(OBJ_DRIVER) $(OBJ_MESINKAR) $(OBJ_MESINKATA) $(OBJ_MESINTXT) $(OBJ_MATRIX) $(OBJ_GRAF) $(OBJ_PERMINTAANPERTEMANAN) $(OBJ_USER) $(OBJ_PROFILE) $(OBJ_LOGIN) $(OBJ_PCOLOR) $(OBJ_TEMAN) $(OBJ_SIMPANDANMUAT)
 	$(CC) $(CFLAGS) -o $@ $^
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c -o $@ $<
 
 clean:
-	rm -f main_program $(OBJ_DRIVER) $(OBJ_MESINKAR) $(OBJ_MESINKATA) $(OBJ_MESINTXT) $(OBJ_MATRIX) $(OBJ_GRAF) $(OBJ_USER) $(OBJ_PROFILE) $(OBJ_LOGIN) $(OBJ_PCOLOR) $(OBJ_TEMAN) $(OBJ_SIMPANDANMUAT)
+	rm -f main_program $(OBJ_DRIVER) $(OBJ_MESINKAR) $(OBJ_MESINKATA) $(OBJ_MESINTXT) $(OBJ_MATRIX) $(OBJ_GRAF) $(OBJ_PERMINTAANPERTEMANAN) $(OBJ_USER) $(OBJ_PROFILE) $(OBJ_LOGIN) $(OBJ_PCOLOR) $(OBJ_TEMAN) $(OBJ_SIMPANDANMUAT)
 
 run: all
 	./main_program	

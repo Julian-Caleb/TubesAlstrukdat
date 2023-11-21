@@ -4,6 +4,12 @@
         "mesinkata.h": "c",
         "boolean.h": "c",
         "profile.h": "c",
-        "user.h": "c"
+        "user.h": "c",
+        "matrix.h": "c",
+        "simpandanmuat.h": "c",
+        "pcolor.h": "c",
+        "login.h": "c",
+        "teman.h": "c",
+        "permintaanpertemanan.h": "c"
     }
 }

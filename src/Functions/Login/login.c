@@ -33,8 +33,10 @@ void daftar() {
         arrayOfProfile.length++;
         printf("Pengguna telah berhasil terdaftar. Masuk untuk menikmati fitur-fitur BurBir.\n");
         printf("\n");
+        CreateGraf(&grafPertemanan, arrayOfProfile.length);
+        grafPertemanan.mem[arrayOfProfile.length-1][arrayOfProfile.length-1] = 1;
     }
-
+    
 }
 
 void masuk() {
@@ -65,6 +67,7 @@ void masuk() {
         }
         pass = CopyToNewWord(currentWord);
         setUser(&currentUser, uname, pass, checkId(uname));
+        isLoggedIn = true;
         printf("Anda telah berhasil masuk dengan nama pengguna Tuan Bri. Mari menjelajahi BurBir bersama Ande-Ande Lumut!\n");
         printf("\n");
     }

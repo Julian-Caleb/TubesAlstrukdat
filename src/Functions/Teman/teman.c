@@ -80,6 +80,24 @@ int banyakTeman() {
 
 }
 
+int banyakTemanOrangLain(Word name) {
+
+    int i, total, id;
+
+    id = checkId(name);
+
+    total = 0;
+
+    for (i = 0; i < grafPertemanan.length; i++) {
+        if (grafPertemanan.mem[id][i] == 1) {
+            total++;
+        }
+    }
+
+    return total-1;
+
+}
+
 boolean isTeman(Word friend) {
 
     boolean check;

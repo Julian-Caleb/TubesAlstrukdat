@@ -17,6 +17,8 @@ void hapusTeman();
 
 int banyakTeman();
 
+int banyakTemanOrangLain(Word name);
+
 boolean isTeman(Word friend);
 
 #endif

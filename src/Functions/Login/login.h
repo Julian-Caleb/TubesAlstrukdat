@@ -8,7 +8,6 @@
 
 extern boolean isLoggedIn;
 extern User currentUser;
-extern ArrayOfProfile arrayOfProfile;
 
 void daftar();
 
@@ -17,6 +16,8 @@ void masuk();
 void keluar();
 
 boolean isUnameExist(Word uname);
+
+int checkId(Word uname);
 
 boolean isPasswordExist(Word pass);
 

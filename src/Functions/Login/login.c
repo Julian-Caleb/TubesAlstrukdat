@@ -3,7 +3,6 @@
 
 boolean isLoggedIn;
 User currentUser;
-ArrayOfProfile arrayOfProfile;
 
 void daftar() {
     
@@ -55,17 +54,17 @@ void masuk() {
             STARTSENTENCE();
             printf("\n");
         }
-        printf("\n");
         uname = CopyToNewWord(currentWord);
         printf("Masukkan kata sandi: \n");
         STARTSENTENCE();
+        printf("\n");
         while (!isPasswordExist(currentWord)) {
             printf("Wah, kata sandi yang Anda masukkan belum tepat. Periksa kembali kata sandi Anda!\n");
             STARTSENTENCE();
             printf("\n");
         }
         pass = CopyToNewWord(currentWord);
-        setUser(&currentUser, uname, pass);
+        setUser(&currentUser, uname, pass, checkId(uname));
         printf("Anda telah berhasil masuk dengan nama pengguna Tuan Bri. Mari menjelajahi BurBir bersama Ande-Ande Lumut!\n");
         printf("\n");
     }
@@ -97,6 +96,23 @@ boolean isUnameExist(Word uname) {
     }
 
     return check;
+
+}
+
+int checkId(Word uname) {
+
+    int i;
+    
+    if (isUnameExist(uname)) {
+        i = 0;
+        while (!isWordEqual(uname, arrayOfProfile.buffer[i].username)) {
+            i++;
+        }
+    } else {
+        i = -999;
+    }
+
+    return i;
 
 }
 

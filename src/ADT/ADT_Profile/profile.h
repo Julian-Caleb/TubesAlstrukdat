@@ -6,6 +6,8 @@
 #include "../ADT_Matrix/matrix.h"
 #include "../ADT_User/user.h"
 #include "../../Functions/PColor/pcolor.h"
+#include "../../Functions/Login/login.h"
+#include "../../Functions/Teman/teman.h"
 
 #define CAPACITYPENGGUNA 20
 
@@ -52,5 +54,8 @@ void displayPFP(Profile profile);
 
 void displayProfile(Profile profil);
 
+void gantiProfil();
+
+void lihatProfil(Profile profile);
 
 #endif

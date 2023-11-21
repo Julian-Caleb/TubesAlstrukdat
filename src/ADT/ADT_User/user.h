@@ -12,7 +12,7 @@ typedef struct {
     int id;
 } User;
 
-void setUser(User *user, Word namaInput, Word sandiInput);
+void setUser(User *user, Word namaInput, Word sandiInput, int id);
 
 boolean isUsernameValid (Word namaInput);
 

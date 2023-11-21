@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include "profile.h"
 
+ArrayOfProfile arrayOfProfile;
+
 void setUsername(Profile *profile, Word namaInput) {
     if (isUsernameValid(namaInput)) {
         (*profile).username = namaInput;
@@ -146,5 +148,58 @@ void displayProfile(Profile profil)
     printf("| Weton: ");
     printWord(profil.weton);
     printf("\n");
-    displayPFP(profil);
+}
+
+void gantiProfil() {
+
+    int id;
+
+    id = checkId(currentUser.username);
+    displayProfile(arrayOfProfile.buffer[id]);
+
+    printf("Masukkan Bio Akun:\n");
+    STARTSENTENCE();
+    while (!isBioValid(currentWord)) {
+        printf("Bio tidak valid. Masukkan lagi yuk!\n");
+        STARTSENTENCE();
+    }
+    setBio(&arrayOfProfile.buffer[id], currentWord);
+    printf("\n");
+
+    printf("Masukkan No HP:\n");
+    STARTSENTENCE();
+    while (!isNomorHPValid(currentWord)) {
+        printf("No HP tidak valid. Masukkan lagi yuk!\n");
+        STARTSENTENCE();
+    }
+    setNomorHP(&arrayOfProfile.buffer[id], currentWord);
+    printf("\n");
+
+    printf("Masukkan Weton:\n");
+    STARTSENTENCE();
+    while (!isWetonValid(currentWord)) {
+        printf("Weton tidak valid. Masukkan lagi yuk!\n");
+        STARTSENTENCE();
+    }
+    setWeton(&arrayOfProfile.buffer[id], currentWord);    
+    printf("\n");
+
+    printf("Profil Anda sudah berhasil diperbarui!\n");
+    printf("\n");
+
+}
+
+void lihatProfil(Profile profile) {
+
+    if ((!profile.private) || (profile.private && isTeman(profile.username))) {
+        displayProfile(profile);
+        displayPFP(profile);
+    } else {
+        printf("Wah, akun");
+        printWord(profile.username);
+        printf("diprivat nih. Ikuti dulu yuk untuk bisa melihat profil");
+        printWord(profile.username);
+        printf("\n");
+    }
+
 }

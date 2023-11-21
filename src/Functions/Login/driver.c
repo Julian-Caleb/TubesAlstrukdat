@@ -11,5 +11,4 @@ int main() {
     masuk();
     printWord(currentUser.username);
 
-
 }

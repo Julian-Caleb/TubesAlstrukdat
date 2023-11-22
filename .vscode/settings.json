@@ -11,6 +11,10 @@
         "login.h": "c",
         "teman.h": "c",
         "permintaanpertemanan.h": "c",
-        "typeinfo": "c"
+        "typeinfo": "c",
+        "kicauan.h": "c",
+        "stdio.h": "c",
+        "utas.h": "c",
+        "draf.h": "c"
     }
 }

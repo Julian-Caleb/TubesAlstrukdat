@@ -3,11 +3,9 @@
 
 int main() {
 
-    STARTWORD();
-    printWord(currentWord);
+    STARTSENTENCE();
     muat(currentWord);
     
-    printWord(arrayOfProfile.buffer[0].username);
 
     return 0;
 

@@ -18,7 +18,9 @@ Address MakeUtas(int indexUtas) {
         if(isKicauAllSpace(currentWord)) {
             printf("Kicau tidak boleh hanya berisi spasi!");
         } else {
-            utas->index = index;
+            if (utas->index == IDX_UNDEF) {
+                utas->index = index;
+            }
             utas->nama = CopyToNewWord(currentUser.username);
             utas->time = setTime();
             utas->kicau = CopyToNewWord(currentWord);

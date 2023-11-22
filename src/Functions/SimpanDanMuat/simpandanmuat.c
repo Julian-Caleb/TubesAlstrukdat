@@ -1,9 +1,5 @@
 #include <stdio.h>
-#include <sys/stat.h>
 #include "simpandanmuat.h"
-#include "../../ADT/ADT_MesinTxt/mesintxt.h"
-#include "../../ADT/ADT_Profile/profile.h"
-#include "../../ADT/ADT_Matrix/matrix.h"
 
 Word addExtension(Word foldername) {
 
@@ -233,14 +229,14 @@ void muat(Word foldername) {
 
     // Cek eksistensi folder
     struct stat folderStat;
-    if (stat(foldername.TabWord, &folderStat) != 0) {
+    if (stat(foldername.TabWord, &folderStat) != 0 || !S_ISDIR(folderStat.st_mode)) {
         printf("Folder tidak ditemukan :(");
     } else {
-
         // Pembuatan path
         Word penggunaPath, balasanPath, drafPath, kicauanPath, utasPath;
         penggunaPath = penggunaFile(foldername);
         STARTTXT(penggunaPath);
+        printWord(currentWord);
         n = currentWord.TabWord[0];
         for(i = 0; i < n; i++) {
             // Uname
@@ -276,7 +272,25 @@ void muat(Word foldername) {
             // id
             arrayOfProfile.buffer[i].id = i;
         }
-
+        // Teman
+        CreateGraf(&grafPertemanan, 3);
+        for (i = 0; i < n; j++) {
+            ADVTXTWORD();
+            j = 0;
+            for (k = 0; k < n; k++) {
+                grafPertemanan.mem[i][k] = currentWord.TabWord[j];
+                j = j + 2;
+            }
+        }  
+        printMatrixPertemanan();
+        // Permintaan Pertemanan
+        // n = currentWord.TabWord[0];
+        // for (i = 0; i < n; i++) {
+        //     ADVTXTWORD();
+        //     currentWord.TabWord[0]; // Yang meminta
+        //     currentWord.TabWord[2]; // Yang menerima
+        //     currentWord.TabWord[4]; // Banyak teman yang meminta
+        // }
         balasanPath = balasanFile(foldername);
         printWord(balasanPath);
         

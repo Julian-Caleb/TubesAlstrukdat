@@ -7,8 +7,11 @@ static int retval;
 void STARTTXT(Word fileName) {
 
     file = fopen(fileName.TabWord, "r");
+    if (file == NULL) {
+        printf("File opening failed.\n");
+    }
     ADVTXT();
-    if (currentChar == ENTER) {
+    if (currentChar == ENTER || currentChar == EOF) {
         EndWord = true;
     } else {
         EndWord = false;
@@ -25,12 +28,20 @@ void ADVTXT() {
 
 void ADVTXTWORD() {
 
-    if (currentChar == ENTER) {
-        while(currentChar == ENTER) {
+    while (currentChar == ENTER || currentChar == ' ') {
+        if (currentChar == ENTER) {
+            while (currentChar == ENTER) {
+                ADVTXT();
+            }
+        } else {
             ADVTXT();
         }
     }
     COPYWORD();
+    if (currentChar == EOF) {
+        printf("File selesai dibaca.\n");
+        fclose(file);
+    }
 
 }
 

@@ -11,23 +11,26 @@
 #define IDX_MIN 0
 #define IDX_UNDEF -999
 
-typedef struct {
-    int id;
+typedef struct kicau* Address;
+typedef struct kicau {
+    int index;
     Word nama;
     Time time;
     Word kicau;
     int like;
+    int idUtas;
+    Address nextUtas;
 } Kicau;
 
 typedef struct
 {
     Kicau *buffer;
-    int nEff;
+    int nEffKicau;
+    int nEffUtas;
     int capacity;
 } Kicauan;
 
 extern Kicauan kicauan;
-extern int availableId;
 
 boolean isKicauanFull();
 

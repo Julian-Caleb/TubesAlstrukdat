@@ -2,23 +2,22 @@
 #include "kicauan.h"
 
 Kicauan kicauan;
-int availableId;
 
 boolean isKicauanFull() {
-    return (kicauan.nEff == kicauan.capacity);
+    return (kicauan.nEffKicau == kicauan.capacity);
 }
 
 boolean isKicauanEmpty() {
-    return (kicauan.nEff == 0);
+    return (kicauan.nEffKicau == 0);
 }
 
 void CreateKicauanExtern() {
-    kicauan.buffer = (Kicau*)malloc(100 * sizeof(Kicau));
-    availableId = 0;
+    kicauan.buffer = (Kicau*)malloc(1 * sizeof(Kicau));
 
     if (kicauan.buffer != NULL) {
-        kicauan.nEff = 0;
-        kicauan.capacity = 100;
+        kicauan.nEffKicau = 0;
+        kicauan.capacity = 1;
+        kicauan.nEffUtas = 0;
     } else {
         printf("Alokasi memori gagal!\n");
         return;
@@ -28,18 +27,19 @@ void CreateKicauanExtern() {
 
 Kicau MakeKicau() {
     Kicau kicau;
-    printf("Masukkan kicauan:\n");
+    printf("Masukkan kicau:\n");
     STARTSENTENCE();
     printf("\n");
     if(isKicauAllSpace(currentWord)) {
         printf("Kicau tidak boleh hanya berisi spasi!");
     } else {
-        kicau.id = availableId + 1;
-        availableId++;
+        kicau.index = kicauan.nEffKicau + 1;
         kicau.nama = CopyToNewWord(currentUser.username);
         kicau.time = setTime();
         kicau.kicau = CopyToNewWord(currentWord);
         kicau.like = 0;
+        kicau.nextUtas = NULL;
+        kicau.idUtas = IDX_UNDEF;
     }
     return kicau;
 }
@@ -50,15 +50,15 @@ void AddKicau() {
     if (isKicauanFull()) {
         ExpandKicauan();
     }
-    CopyKicau(&kicauan.buffer[kicauan.nEff], newKicau);
-    kicauan.nEff++;
+    CopyKicau(&kicauan.buffer[kicauan.nEffKicau], newKicau);
+    kicauan.nEffKicau++;
     printf("Selamat, kicauan berhasil dibuat!\n");
-    PrintKicauCertainId(newKicau.id);
+    PrintKicauCertainId(newKicau.index);
     printf("\n\n");
 }
 
 void CopyKicau(Kicau *kicau1, Kicau kicau2) {
-    (*kicau1).id = kicau2.id;
+    (*kicau1).index = kicau2.index;
     (*kicau1).kicau = CopyToNewWord(kicau2.kicau);
     (*kicau1).like= kicau2.like;
     (*kicau1).nama = CopyToNewWord(kicau2.nama);
@@ -103,7 +103,7 @@ void SukaKicau(int id) {
 }
 
 boolean isIdExist(int id) {
-    return (id <= kicauan.nEff && id == kicauan.buffer[id-1].id);
+    return (id <= kicauan.nEffKicau && id == kicauan.buffer[id-1].index);
 }
 
 boolean isKicauAllSpace(Word kicau) {
@@ -132,10 +132,10 @@ void ExpandKicauan() {
 
 void PrintKicau() {
     int i;
-    for (i = 0; i < kicauan.nEff; i++) {
+    for (i = 0; i < kicauan.nEffKicau; i++) {
         if (isWordEqual(kicauan.buffer[i].nama, currentUser.username)) {
             printf("| ");
-            printf("ID = %d", kicauan.buffer[i].id);
+            printf("ID = %d", kicauan.buffer[i].index);
             printf("\n");
             printf("| ");
             printWordNoNewLine(kicauan.buffer[i].nama);
@@ -156,20 +156,24 @@ void PrintKicau() {
 
 void PrintKicauCertainId(int i) {
     i--;
-    printf("| ");
-    printf("ID = %d", kicauan.buffer[i].id);
-    printf("\n");
-    printf("| ");
-    printWordNoNewLine(kicauan.buffer[i].nama);
-    printf("\n");
-    printf("| ");
-    displayTime(kicauan.buffer[i].time);
-    printf("\n");
-    printf("| ");
-    printWordNoNewLine(kicauan.buffer[i].kicau);
-    printf("\n");
-    printf("| ");
-    printf("Disukai: %d", kicauan.buffer[i].like);
-    printf("\n");
-    printf("\n");
+    if (arrayOfProfile.buffer[i].private && !isTeman(arrayOfProfile.buffer[i].username)) {
+        printf("Wah, kicauan tersebut dibuat oleh akun privat! Ikuti akun itu dulu ya!");
+    } else {
+        printf("| ");
+        printf("ID = %d", kicauan.buffer[i].index);
+        printf("\n");
+        printf("| ");
+        printWordNoNewLine(kicauan.buffer[i].nama);
+        printf("\n");
+        printf("| ");
+        displayTime(kicauan.buffer[i].time);
+        printf("\n");
+        printf("| ");
+        printWordNoNewLine(kicauan.buffer[i].kicau);
+        printf("\n");
+        printf("| ");
+        printf("Disukai: %d", kicauan.buffer[i].like);
+        printf("\n");
+        printf("\n");
+    }
 }

@@ -7,6 +7,7 @@
 #include "../ADT_MesinKata/mesinkata.h"
 #include "../ADT_User/user.h"
 #include "../ADT_Profile/profile.h"
+#include "../ADT_Balasan/balasan.h"
 
 #define IDX_MIN 0
 #define IDX_UNDEF -999
@@ -20,6 +21,7 @@ typedef struct kicau {
     int like;
     int idUtas;
     Address nextUtas;
+    AddressBalasan balasan; 
 } Kicau;
 
 typedef struct

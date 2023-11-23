@@ -15,6 +15,7 @@
         "kicauan.h": "c",
         "stdio.h": "c",
         "utas.h": "c",
-        "draf.h": "c"
+        "draf.h": "c",
+        "balasan.h": "c"
     }
 }

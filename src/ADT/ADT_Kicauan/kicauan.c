@@ -30,7 +30,7 @@ Kicau MakeKicau() {
     printf("Masukkan kicau:\n");
     STARTSENTENCE();
     printf("\n");
-    if(isKicauAllSpace(currentWord)) {
+    if (isKicauAllSpace(currentWord)) {
         printf("Kicau tidak boleh hanya berisi spasi!");
     } else {
         kicau.index = kicauan.nEffKicau + 1;
@@ -39,6 +39,7 @@ Kicau MakeKicau() {
         kicau.kicau = CopyToNewWord(currentWord);
         kicau.like = 0;
         kicau.nextUtas = NULL;
+        kicau.balasan = NULL;
         kicau.idUtas = IDX_UNDEF;
     }
     return kicau;

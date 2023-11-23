@@ -9,27 +9,28 @@ Address newUtas() {
 Address MakeUtas(int indexUtas) {
     Address utas = newUtas();
     int index = indexUtas;
-    if (utas == NULL) {
+    while (utas == NULL) {
         printf("Alokasi gagal!");
-    } else {
-        printf("Masukkan kicau:\n");
+        utas = newUtas();
+    } 
+    printf("Masukkan kicau:\n");
+    STARTSENTENCE();
+    printf("\n");
+    while (isKicauAllSpace(currentWord)) {
+        printf("Kicau tidak boleh hanya berisi spasi!");
         STARTSENTENCE();
         printf("\n");
-        if(isKicauAllSpace(currentWord)) {
-            printf("Kicau tidak boleh hanya berisi spasi!");
-        } else {
-            if (utas->index == IDX_UNDEF) {
-                utas->index = index;
-            }
-            utas->nama = CopyToNewWord(currentUser.username);
-            utas->time = setTime();
-            utas->kicau = CopyToNewWord(currentWord);
-            utas->like = 0;
-            utas->nextUtas = NULL;
-        }
     }
-    return utas;
+    if (utas->index == IDX_UNDEF) {
+        utas->index = index;
+    }
+    utas->nama = CopyToNewWord(currentUser.username);
+    utas->time = setTime();
+    utas->kicau = CopyToNewWord(currentWord);
+    utas->like = 0;
+    utas->nextUtas = NULL;
     printf("\n\n");
+    return utas;
 }
 
 void DeallocateKicau(Address kicau) {
@@ -165,9 +166,6 @@ void CetakUtas(int idUtas) {
             printf("\n");
             printf("\t\t| ");
             printWordNoNewLine(utas->kicau);
-            printf("\n");
-            printf("\t\t| ");
-            printf("Disukai: %d", utas->like);
             printf("\n");
             printf("\n");
             utas = utas->nextUtas;

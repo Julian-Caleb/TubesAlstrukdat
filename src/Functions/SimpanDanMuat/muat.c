@@ -46,8 +46,11 @@ void muatPengguna(Word foldername) {
             // Publik
             ADVTXTWORD();
             currentWord.Length--;
-            if (currentWord.TabWord[1] == 'u') { // Publik
+            if (currentWord.TabWord[1] == 'r') { // Private
                 arrayOfProfile.buffer[i].private = true;
+            }
+            else{ // Publik
+                arrayOfProfile.buffer[i].private = false;
             }
             // Matrix 5 baris
             createMatrix(5, 10, &arrayOfProfile.buffer[i].pfp);

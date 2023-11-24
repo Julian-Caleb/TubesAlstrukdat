@@ -257,21 +257,21 @@ void muatBalasan(Word foldername) {
 
     STARTTXT(foldername);
     n = ExtractInteger(currentWord);
-    printWord(currentWord);
+    // printWord(currentWord);
     while (n > 0) {
         // ID Kicauan
         ADVTXTWORD();
-        printWord(currentWord);
+        // printWord(currentWord);
         idKicau = ExtractInteger(currentWord);
         // Memiliki 4 balasan
         ADVTXTWORD();
-        printWord(currentWord);
+        // printWord(currentWord);
         i = ExtractInteger(currentWord);
         // Untuk tiap balasan
         while (i > 0) {
             // Membalas apa
             ADVTXTWORD();
-            printWord(currentWord);
+            // printWord(currentWord);
             j = 0; 
             while (currentWord.TabWord[j] != ' ') {
                 tempOne.TabWord[j] = currentWord.TabWord[j];
@@ -299,7 +299,6 @@ void muatBalasan(Word foldername) {
                         b = b->sibling;
                     }
                     b->sibling = newb;
-                    printf("bruh");
                 }
             } else {
                 idYangDibalas = ExtractInteger(tempOne);
@@ -307,6 +306,7 @@ void muatBalasan(Word foldername) {
                 if (b->child == NULL) {
                     b->child = newb;
                 } else {
+                    b = b->child;
                     while (b->sibling != NULL) {
                         b = b->sibling;
                     }
@@ -318,24 +318,25 @@ void muatBalasan(Word foldername) {
             newb->idBalasan = idBalasannya;
             // Kicau
             ADVTXTWORD();
-            printWord(currentWord);
+            // printWord(currentWord);
             newb->kicau = CopyToNewWord(currentWord);
             // Author
             ADVTXTWORD();
-            printWord(currentWord);
+            // printWord(currentWord);
             newb->nama = CopyToNewWord(currentWord);
             // Datetime
             ADVTXTWORD();
-            printWord(currentWord);
+            // printWord(currentWord);
             newb->time.day = CharToInt(currentWord.TabWord[0]) * 10 + CharToInt(currentWord.TabWord[1]);
             newb->time.month = CharToInt(currentWord.TabWord[3]) * 10 + CharToInt(currentWord.TabWord[4]);
             newb->time.year = CharToInt(currentWord.TabWord[6]) * 1000 + CharToInt(currentWord.TabWord[7]) * 100 + CharToInt(currentWord.TabWord[8]) * 10 + CharToInt(currentWord.TabWord[9]) * 1;
             newb->time.hour = CharToInt(currentWord.TabWord[11]) * 10 + CharToInt(currentWord.TabWord[12]);
             newb->time.minute = CharToInt(currentWord.TabWord[14]) * 10 + CharToInt(currentWord.TabWord[15]);
             newb->time.second = CharToInt(currentWord.TabWord[17]) * 10 + CharToInt(currentWord.TabWord[18]);
-            CetakBalasan(idKicau);
+            i--;
         }
+        n--;
     }
-    CLOSETXT();
+    CLOSETXT();   
 
 }

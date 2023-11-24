@@ -10,6 +10,7 @@ void muat(Word foldername) {
         muatKicauan(foldername);
         muatDraf(foldername);
         muatUtas(foldername);
+        muatBalasan(foldername);
     }
 }
 
@@ -106,6 +107,7 @@ void muatKicauan(Word foldername) {
     STARTTXT(foldername);
     n = CharToInt(currentWord.TabWord[0]);   
     CreateKicauanExtern(n);
+    kicauan.nEffKicau = n;
     // Kicauan
     for (i = 0; i < n; i++) {
         // Index
@@ -240,6 +242,99 @@ void muatUtas(Word foldername) {
             }
         }
 
+    }
+    CLOSETXT();
+
+}
+
+void muatBalasan(Word foldername) {
+    int n, i, j, k;
+    int idKicau, idYangDibalas, idBalasannya;
+    Word tempOne, tempTwo;
+    AddressBalasan b, newb;
+
+    foldername = balasanFile(foldername);
+
+    STARTTXT(foldername);
+    n = ExtractInteger(currentWord);
+    printWord(currentWord);
+    while (n > 0) {
+        // ID Kicauan
+        ADVTXTWORD();
+        printWord(currentWord);
+        idKicau = ExtractInteger(currentWord);
+        // Memiliki 4 balasan
+        ADVTXTWORD();
+        printWord(currentWord);
+        i = ExtractInteger(currentWord);
+        // Untuk tiap balasan
+        while (i > 0) {
+            // Membalas apa
+            ADVTXTWORD();
+            printWord(currentWord);
+            j = 0; 
+            while (currentWord.TabWord[j] != ' ') {
+                tempOne.TabWord[j] = currentWord.TabWord[j];
+                j++;
+            }
+            tempOne.Length = j;
+            j++; k = 0;
+            while (j < currentWord.Length) {
+                tempTwo.TabWord[k] = currentWord.TabWord[j];
+                j++; k++;
+            }
+            tempTwo.Length = k-1;         
+            // Buat newb
+            newb = newBalasan();
+            while (newb == NULL) {
+                newb = newBalasan();
+            }
+            // Kalau kicau utama
+            if (tempOne.TabWord[0] == '-') {
+                b = kicauan.buffer[idKicau-1].balasan;
+                if (b == NULL) {
+                    kicauan.buffer[idKicau-1].balasan = newb;
+                } else {
+                    while (b->sibling != NULL) {
+                        b = b->sibling;
+                    }
+                    b->sibling = newb;
+                    printf("bruh");
+                }
+            } else {
+                idYangDibalas = ExtractInteger(tempOne);
+                b = CariBalasanDariKicau(idKicau, idYangDibalas);
+                if (b->child == NULL) {
+                    b->child = newb;
+                } else {
+                    while (b->sibling != NULL) {
+                        b = b->sibling;
+                    }
+                    b->sibling = newb;
+                }
+            }
+            // Id
+            idBalasannya = ExtractInteger(tempTwo);
+            newb->idBalasan = idBalasannya;
+            // Kicau
+            ADVTXTWORD();
+            printWord(currentWord);
+            newb->kicau = CopyToNewWord(currentWord);
+            // Author
+            ADVTXTWORD();
+            printWord(currentWord);
+            newb->nama = CopyToNewWord(currentWord);
+            // Datetime
+            ADVTXTWORD();
+            printWord(currentWord);
+            newb->time.day = CharToInt(currentWord.TabWord[0]) * 10 + CharToInt(currentWord.TabWord[1]);
+            newb->time.month = CharToInt(currentWord.TabWord[3]) * 10 + CharToInt(currentWord.TabWord[4]);
+            newb->time.year = CharToInt(currentWord.TabWord[6]) * 1000 + CharToInt(currentWord.TabWord[7]) * 100 + CharToInt(currentWord.TabWord[8]) * 10 + CharToInt(currentWord.TabWord[9]) * 1;
+            newb->time.hour = CharToInt(currentWord.TabWord[11]) * 10 + CharToInt(currentWord.TabWord[12]);
+            newb->time.minute = CharToInt(currentWord.TabWord[14]) * 10 + CharToInt(currentWord.TabWord[15]);
+            newb->time.second = CharToInt(currentWord.TabWord[17]) * 10 + CharToInt(currentWord.TabWord[18]);
+            CetakBalasan(idKicau);
+        }
     }
     CLOSETXT();
 

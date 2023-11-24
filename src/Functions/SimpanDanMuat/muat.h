@@ -22,6 +22,6 @@ void muatDraf(Word foldername);
 
 void muatUtas(Word foldername);
 
-// void muatBalasan(Word foldername);
+void muatBalasan(Word foldername);
 
 #endif

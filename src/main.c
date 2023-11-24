@@ -105,41 +105,49 @@ int main() {
                 SukaKicau(oneIntParam(currentWord));
                 break;
             case 16:
-                // ubah kicauan
+                UbahKicau(oneIntParam(currentWord));
                 break;
             case 17:
-                // balas
+                Balas(twoIntParamFirst(currentWord),twoIntParamSecond(currentWord));
                 break;
             case 18:
-                // suka kicauan
+                CetakBalasan(oneIntParam(currentWord));
                 break;
             case 19:
-                // hapus balasan
+                HapusBalasan(twoIntParamFirst(currentWord),twoIntParamSecond(currentWord));
                 break;
             case 20:
-                // buat draf
                 BuatDraf();
                 break;
             case 21:
-                // lihat draf
+                LihatDraf();
                 break;
             case 22:
-                // utas
+                AddUtas(oneIntParam(currentWord));
                 break;
             case 23:
-                // sambung utas
+                SambungUtas(twoIntParamFirst(currentWord),twoIntParamSecond(currentWord));
                 break;
             case 24:
-                // hapus utas
+                HapusUtas(twoIntParamFirst(currentWord),twoIntParamSecond(currentWord));
                 break;
             case 25:
-                // cetak utas
+                CetakUtas(oneIntParam(currentWord));
                 break;
             case 26:
-                //simpan
+                printf("Masukkan nama folder : ");
+                STARTSENTENCE();
+                simpan(currentWord);
                 break;
             case 27:
-                // muat
+                if(!isLoggedIn){
+                    printf("Masukkan nama folder : ");
+                    STARTSENTENCE();
+                    muat(currentWord);
+                }
+                else{
+                    printf("Keluar terlebih dahulu untuk melakukan muat!");
+                }
                 break;
             case -999:
                 printf("Perintah Invalid, cek kembali penulisan perintah atau parameter perintah\n");

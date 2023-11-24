@@ -134,7 +134,7 @@ void ExpandKicauan() {
 void PrintKicau() {
     int i;
     for (i = 0; i < kicauan.nEffKicau; i++) {
-        if (isWordEqual(kicauan.buffer[i].nama, currentUser.username)) {
+        if (isTeman(kicauan.buffer[i].nama)) {
             printf("| ");
             printf("ID = %d", kicauan.buffer[i].index);
             printf("\n");

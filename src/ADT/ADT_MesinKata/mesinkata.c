@@ -166,8 +166,10 @@ int ExtractInteger(Word word) {
     total = 0;
     tens = 1;
     for (i = word.Length-1; i >= 0; i--) {
-        total = total + (CharToInt(word.TabWord[i]) * (tens));
-        tens *= 10;
+        if (word.TabWord[i] != '\n' && word.TabWord[i] != '\r' && word.TabWord[i] != ' ' && word.TabWord[i] != '\t') {
+            total = total + (CharToInt(word.TabWord[i]) * (tens));
+            tens *= 10;
+        }
     }
     return total;
 }

@@ -10,7 +10,7 @@ int main() {
         if (currentWord.TabWord[0] == 'a') {
             break;
         } else {
-            printf("%d", ExtractInteger(currentWord) + 55);
+            printf("%d\n", ExtractInteger(currentWord));
         }
 
     }

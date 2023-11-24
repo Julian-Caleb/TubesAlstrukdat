@@ -67,31 +67,40 @@ void muatPengguna(Word foldername) {
     n = ExtractInteger(currentWord);
     for (i = 0; i < n; i++) {
         // Uname
+        printf("Username: ");
         ADVTXTWORD();
         printWord(currentWord);
         setUsername(&arrayOfProfile.buffer[i], currentWord);
         // Password
+        printf("Password: ");
         ADVTXTWORD();
         printWord(currentWord);
         setPassword(&arrayOfProfile.buffer[i], currentWord);
         // Bio
+        printf("Bio: ");
         ADVTXTWORD();
         printWord(currentWord);
         setBio(&arrayOfProfile.buffer[i], currentWord);
         // Nomor HP
+        printf("Nomor HP: ");
         ADVTXTWORD();
         printWord(currentWord);
         setNomorHP(&arrayOfProfile.buffer[i], currentWord);
         // Weton
+        printf("Weton: ");
         ADVTXTWORD();
         printWord(currentWord);
         setWeton(&arrayOfProfile.buffer[i], currentWord);
         // Publik
-            if (currentWord.TabWord[1] == 'u') { // Publik
+        printf("Privasi: ");
+        ADVTXTWORD();
+        printWord(currentWord);
+        if (currentWord.TabWord[1] == 'u') { // Publik
             arrayOfProfile.buffer[i].private = true;
         }
         // Matrix 5 baris
         createMatrix(5, 10, &arrayOfProfile.buffer[i].pfp);
+        printf("PFP:\n");
         for (j = 0; j < 5; j++) {
             ADVTXTWORD();
             printWord(currentWord);
@@ -105,6 +114,7 @@ void muatPengguna(Word foldername) {
         arrayOfProfile.buffer[i].id = i;
     }
     // Teman
+    printf("Graf pertemanan:\n");
     CreateGraf(&grafPertemanan, n);
     for (i = 0; i < n; i++) {
         ADVTXTWORD();
@@ -120,6 +130,7 @@ void muatPengguna(Word foldername) {
     printWord(currentWord);
     n = ExtractInteger(currentWord);
     MakeEmpty();
+    printf("Permintaan pertemanan:\n");
     for (i = 0; i < n; i++) {
         ADVTXTWORD();
         printWord(currentWord);
@@ -201,7 +212,8 @@ void muatDraf(Word foldername) {
     foldername = addExtension(foldername);
     STARTTXT(foldername);
     printWord(currentWord);
-    n = ExtractInteger(currentWord);
+    n = CharToInt(currentWord.TabWord[0]);
+    printf("%d", n);
     CreateDrafExtern(5);
     // Draf
     while (n > 0) {
@@ -250,5 +262,5 @@ void muatDraf(Word foldername) {
 }
 
 void muatUtas(Word foldername) {
-    
+
 }

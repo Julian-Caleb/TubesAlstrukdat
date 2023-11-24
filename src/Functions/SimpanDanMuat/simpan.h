@@ -14,14 +14,14 @@
 
 void simpan(Word foldername);
 
-// void simpanPengguna(Word foldername);
+void simpanPengguna(Word foldername);
 
-// void simpanKicauan(Word foldername);
+void simpanKicauan(Word foldername);
 
-// void simpanDraf(Word foldername);
+void simpanDraf(Word foldername);
 
-// void simpanUtas(Word foldername);
+void simpanUtas(Word foldername);
 
-// void simpanBalasan(Word foldername);
+void simpanBalasan(Word foldername);
 
 #endif

@@ -27,47 +27,64 @@ void simpan(Word foldername) {
     utasPath = utasFile(foldername);
     // printWord(utasPath);
 
-    int v = 5;
-    FILE* file;
+    simpanPengguna(penggunaPath);
+    simpanBalasan(balasanPath);
+    simpanDraf(drafPath);
+    kicauanPath(kicauanPath);
+    utasPath(utasPath);
 
+}
+
+void simpanPengguna(Word foldername) {
+    FILE* file;
     // Pengguna
     file = fopen(penggunaPath.TabWord, "w");
     if (file == NULL) {
         printf("Waduh ada error :(");
     }
-    fprintf(file, "%d\n", v);
+    // Tulis di sini
     fclose(file);
+}
 
-    // Balasan
-    file = fopen(balasanPath.TabWord, "w");
-    if (file == NULL) {
-        printf("Waduh ada error :(");
-    }
-    fprintf(file, "%d\n", v);
-    fclose(file);
-
+void simpanKicauan(Word foldername) {
+    FILE* file;
     // Kicauan
     file = fopen(kicauanPath.TabWord, "w");
     if (file == NULL) {
         printf("Waduh ada error :(");
     }
-    fprintf(file, "%d\n", v);
+    // Tulis di sini
     fclose(file);
+}
 
-    // Utas
-    file = fopen(utasPath.TabWord, "w");
-    if (file == NULL) {
-        printf("Waduh ada error :(");
-    }
-    fprintf(file, "%d\n", v);
-    fclose(file);
-
+void simpanDraf(Word foldername) {
+    FILE* file;
     // Draf
     file = fopen(drafPath.TabWord, "w");
     if (file == NULL) {
         printf("Waduh ada error :(");
     }
-    fprintf(file, "%d\n", v);
+    // Tulis di sini
     fclose(file);
+}
 
+void simpanUtas(Word foldername) {
+    FILE* file;
+    // Utas
+    file = fopen(utasPath.TabWord, "w");
+    if (file == NULL) {
+        printf("Waduh ada error :(");
+    }
+    // Tulis di sini
+    fclose(file);
+}
+
+void simpanBalasan(Word foldername) {
+    // Balasan
+    file = fopen(balasanPath.TabWord, "w");
+    if (file == NULL) {
+        printf("Waduh ada error :(");
+    }
+    // Tulis di sini
+    fclose(file);
 }

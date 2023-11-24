@@ -36,3 +36,16 @@ void displayGraf(Graf g) {
 
 
 }
+
+void fdisplayGraf(FILE* file,Graf g) {
+    int i, j;
+    for (i = 0; i < LENGTH(g); i++) {
+        for (j = 0; j < LENGTH(g); j++) {
+            fprintf(file,"%d", ELEMENT(g, i, j));
+            if (j < LENGTH(g) - 1) {
+                fprintf(file," ");
+            }
+        }
+        fprintf(file,"\n");
+    }
+}

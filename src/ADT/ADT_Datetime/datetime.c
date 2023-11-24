@@ -6,7 +6,7 @@ void displayTime(Time T) {
 }
 
 void fdisplayTime(FILE* file , Time T) {
-    fprintf("%02d/%02d/%04d %02d:%02d:%02d", Day(T), Month(T), Year(T), Hour(T), Minute(T), Second(T));
+    fprintf(file, "%02d/%02d/%04d %02d:%02d:%02d", Day(T), Month(T), Year(T), Hour(T), Minute(T), Second(T));
 }
 
 Time setTime() {

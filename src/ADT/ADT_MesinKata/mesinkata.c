@@ -192,3 +192,19 @@ int ExtractInteger(Word word) {
     }
     return total;
 }
+
+void fprintWord(FILE* f, Word word) {
+
+   int i;
+
+   for (i = 0; i < word.Length; i++) {
+
+        if (word.TabWord[i] != '\0') {
+            fprintf(f,"%c", word.TabWord[i]);
+        }
+
+   }
+   
+   fprintf(f,"\n");
+
+}

@@ -31,6 +31,8 @@ Word CopyToNewWord(Word word1);
 
 void printWord(Word word);
 
+void fprintWord(FILE* f, Word word);
+
 void printWordNoNewLine(Word word);
 
 boolean isWordEqual(Word word1, Word word2);

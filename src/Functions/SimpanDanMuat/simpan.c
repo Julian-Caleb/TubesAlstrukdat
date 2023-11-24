@@ -97,6 +97,26 @@ void simpanUtas(Word foldername) {
         printf("Waduh ada error :(");
     }
     // Tulis di sini
+    int exist = 0;
+    int i;
+    for (i = 1; i <= kicauan.length; i++) {
+        if(lengthUtas[i] > 0) {
+            exist++;
+        }
+    }
+    fprintf(file, exist);
+    for (i = 1; i <= kicauan.length; i++) {
+        if(lengthUtas[i] > 0) {
+            fprintf(file, findIdKicau[i]);
+            fprintf(file, lengthUtas[i]);
+            int j;
+            for (j = 0; j <= lengthUtas[i]; j++) {
+                fprintWord(file, kicauan.buffer[i].kicau);
+                fprintWord(file, kicauan.buffer[i].nama);
+                fdisplayTime(file, kicauan.buffer[i].time);
+            }
+        }
+    }
     fclose(file);
 }
 

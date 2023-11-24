@@ -21,6 +21,8 @@ typedef struct {
 
 void displayTime(Time T);
 
+void fdisplayTime(FILE* file , Time T);
+
 Time setTime();
 
 

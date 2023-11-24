@@ -47,15 +47,20 @@ Kicau MakeKicau() {
 
 void AddKicau() {
     Kicau newKicau;
-    newKicau = MakeKicau();
-    if (isKicauanFull()) {
-        ExpandKicauan();
+    if(isLoggedIn){
+        newKicau = MakeKicau();
+        if (isKicauanFull()) {
+            ExpandKicauan();
+        }
+        CopyKicau(&kicauan.buffer[kicauan.nEffKicau], newKicau);
+        kicauan.nEffKicau++;
+        printf("Selamat, kicauan berhasil dibuat!\n");
+        PrintKicauCertainId(newKicau.index);
+        printf("\n\n");
     }
-    CopyKicau(&kicauan.buffer[kicauan.nEffKicau], newKicau);
-    kicauan.nEffKicau++;
-    printf("Selamat, kicauan berhasil dibuat!\n");
-    PrintKicauCertainId(newKicau.index);
-    printf("\n\n");
+    else{
+        printf("Anda belum login! Masuk terlebih dahulu untuk menikmati layanan BurBir.\n");
+    }
 }
 
 void CopyKicau(Kicau *kicau1, Kicau kicau2) {
@@ -67,23 +72,28 @@ void CopyKicau(Kicau *kicau1, Kicau kicau2) {
 }
 
 void UbahKicau(int id) {
-    if (!isIdExist(id)) {
-        printf("Tidak ditemukan kicau dengan id %d!", id);
-    } else if (!isWordEqual(kicauan.buffer[id-1].nama, currentUser.username)) {
-        printf("Kicau dengan id %d bukan milikmu!", id);
-    } else {
-        printf("Masukkan kicauan baru:\n");
-        STARTSENTENCE();
-        printf("\n");
-        if(isKicauAllSpace(currentWord)) {
-            printf("Kicau tidak boleh hanya berisi spasi!");
+    if(isLoggedIn){
+        if (!isIdExist(id)) {
+            printf("Tidak ditemukan kicau dengan id %d!", id);
+        } else if (!isWordEqual(kicauan.buffer[id-1].nama, currentUser.username)) {
+            printf("Kicau dengan id %d bukan milikmu!", id);
         } else {
-            kicauan.buffer[id-1].kicau = CopyToNewWord(currentWord);
-            printf("Kicau berhasil diperbaharui!\n");
-            PrintKicauCertainId(id);
+            printf("Masukkan kicauan baru:\n");
+            STARTSENTENCE();
+            printf("\n");
+            if(isKicauAllSpace(currentWord)) {
+                printf("Kicau tidak boleh hanya berisi spasi!");
+            } else {
+                kicauan.buffer[id-1].kicau = CopyToNewWord(currentWord);
+                printf("Kicau berhasil diperbaharui!\n");
+                PrintKicauCertainId(id);
+            }
         }
+        printf("\n\n");
     }
-    printf("\n\n");
+    else{
+        printf("Anda belum login! Masuk terlebih dahulu untuk menikmati layanan BurBir.\n");
+    }
 }
 
 void SukaKicau(int id) {

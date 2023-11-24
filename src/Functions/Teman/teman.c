@@ -32,7 +32,7 @@ void daftarTeman() {
             printf("belum mempunyai teman \n");
         } 
     } else {
-        printf("Anda belum masuk! Masuk terlebih dahulu untuk menikmati layanan BurBir.");
+        printf("Anda belum masuk! Masuk terlebih dahulu untuk menikmati layanan BurBir.\n");
     }
 
 }
@@ -59,7 +59,7 @@ void hapusTeman() {
             printf("Bukan teman Anda");
         }
     } else {
-        printf("Anda belum masuk! Masuk terlebih dahulu untuk menikmati layanan BurBir.");
+        printf("Anda belum masuk! Masuk terlebih dahulu untuk menikmati layanan BurBir.\n");
     }
 
 }

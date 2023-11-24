@@ -103,12 +103,17 @@ void SetujuiPertemanan() {
             printf("\n");
             STARTSENTENCE();
             if (currentWord.TabWord[0] == 'Y' || currentWord.TabWord[0] == 'y') {
-                printf("Permintaan pertemanan dari Bob telah disetujui. Selamat! Anda telah berteman dengan Bob.");
                 name = CopyToNewWord(permintaanPertemanan.buffer[i].DariSiapa);
                 idTeman = checkId(name);
                 idSaya = checkId(currentUser.username);
                 grafPertemanan.mem[idTeman][idSaya] = 1;
                 grafPertemanan.mem[idSaya][idTeman] = 1;
+                printf("Permintaan pertemanan dari ");
+                printWordNoNewLine(name); 
+                printf(" telah disetujui. Selamat! Anda telah berteman dengan ");
+                printWordNoNewLine(name);
+                printf(".");
+
             } else {
                 printf("Permintaan pertemanan dari Bob telah ditolak.");
                 name = CopyToNewWord(permintaanPertemanan.buffer[i].DariSiapa);

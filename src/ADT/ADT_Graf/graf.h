@@ -22,4 +22,6 @@ void readGraf(Graf *g, int nPengguna);
 
 void displayGraf(Graf g);
 
+void fdisplayGraf(FILE* file,Graf g);
+
 #endif

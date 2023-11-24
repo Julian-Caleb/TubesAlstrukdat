@@ -43,7 +43,27 @@ void simpanPengguna(Word foldername) {
         printf("Waduh ada error :(");
     }
     // Tulis di sini
-    fprintWord(file,arrayOfProfile.buffer[0].username);
+    int i;
+    fprintf(file,"%d\n",arrayOfProfile.length);
+    for(i=0;i<arrayOfProfile.length;i++){
+        fprintWord(file,arrayOfProfile.buffer[i].username);
+        fprintWord(file,arrayOfProfile.buffer[i].password);
+        fprintWord(file,arrayOfProfile.buffer[i].bio);
+        fprintWord(file,arrayOfProfile.buffer[i].nomorHP);
+        fprintWord(file,arrayOfProfile.buffer[i].weton);
+        if(arrayOfProfile.buffer[i].private){
+            fprintf(file,"Privat\n");
+        }
+        else{
+            fprintf(file,"Publik\n");
+        }
+        fdisplayMatrixPFP(file,arrayOfProfile.buffer[i].pfp);
+    }
+    fdisplayGraf(file,grafPertemanan);
+    fprintf(file,"%d",permintaanPertemanan.length);
+    for (i=0;i<permintaanPertemanan.length;i++){
+        fprintf(file,"%d %d %d",checkId(permintaanPertemanan.buffer[i].DariSiapa),checkId(permintaanPertemanan.buffer[i].UntukSiapa),permintaanPertemanan.buffer[i].banyakTeman);
+    }
     fclose(file);
 }
 

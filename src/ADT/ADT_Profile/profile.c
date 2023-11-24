@@ -285,3 +285,16 @@ void ubahFotoProfil() {
     }
 
 }
+
+void fdisplayMatrixPFP(FILE* file,Matrix m) {
+    int i, j;
+    for (i = 0; i < 5; i++) {
+        for (j = 0; j < 10; j++) {
+            fprintf(file,"%c", ELMT(m, i, j));
+            if (j != 9) {
+                fprintf(file," ");
+            }
+        }
+        fprintf(file,"\n");
+    }
+}

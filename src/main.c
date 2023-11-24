@@ -135,8 +135,7 @@ int main() {
                 // cetak utas
                 break;
             case 26:
-                STARTSENTENCE();
-                simpanPengguna(currentWord);
+                //simpan
                 break;
             case 27:
                 // muat

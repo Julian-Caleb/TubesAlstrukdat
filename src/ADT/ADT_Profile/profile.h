@@ -62,4 +62,6 @@ void aturJenisAkun();
 
 void ubahFotoProfil();
 
+void fdisplayMatrixPFP(FILE* file,Matrix m);
+
 #endif

@@ -44,3 +44,19 @@ void displayMatrix(Matrix m) {
     }
 
 }
+
+void fdisplayMatrix(FILE* file,Matrix m) {
+
+    int i, j;
+
+    for (i = 0; i < ROW_EFF(m); i++) {
+        for (j = 0; j < COL_EFF(m); j++) {
+            fprintf(file,"%c", ELMT(m, i, j));
+            if (j < COL_EFF(m) - 1) {
+                fprintf(file," ");
+            }
+        }
+        fprintf(file,"\n");
+    }
+
+}

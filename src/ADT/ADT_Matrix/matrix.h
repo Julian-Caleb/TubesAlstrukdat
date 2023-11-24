@@ -25,4 +25,6 @@ void readMatrix(Matrix *m, int nRow, int nCol);
 
 void displayMatrix(Matrix m);
 
+void fdisplayMatrix(FILE* file,Matrix m);
+
 #endif

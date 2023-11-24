@@ -148,6 +148,7 @@ void displayProfile(Profile profil)
     printf("| Weton: ");
     printWord(profil.weton);
     printf("\n");
+    displayPFP(profil);
 }
 
 void gantiProfil() {
@@ -201,7 +202,7 @@ void lihatProfil(Word username) {
         }
         if(found){
             i--;
-            if(isTeman(username) || arrayOfProfile.buffer[i].private){
+            if(isTeman(username) || !(arrayOfProfile.buffer[i].private)){
                 displayProfile(arrayOfProfile.buffer[i]);
             }
             else{

@@ -7,6 +7,8 @@ User currentUser;
 void daftar() {
     
     Word uname, pass;
+    Matrix profpic;
+    int i,j;
 
     if (isLoggedIn) {
         printf("Anda sudah masuk. Keluar terlebih dahulu untuk melakukan daftar.\n");
@@ -30,6 +32,16 @@ void daftar() {
         pass = CopyToNewWord(currentWord);
         setUsername(&arrayOfProfile.buffer[arrayOfProfile.length], uname);
         setPassword(&arrayOfProfile.buffer[arrayOfProfile.length], pass);
+        arrayOfProfile.buffer[arrayOfProfile.length].private =false;
+        createMatrix(5,11,&profpic);
+        for(i=0;i<5;i++){
+            for(j=0;j<10;j=j+2){
+                ELMT(profpic,i,j) = 'R';
+                    ELMT(profpic,i,j+1) = '*';
+            }
+            ELMT(profpic,i,10) = 10;
+        }
+        setpfp(&arrayOfProfile.buffer[arrayOfProfile.length], profpic);
         arrayOfProfile.length++;
         printf("Pengguna telah berhasil terdaftar. Masuk untuk menikmati fitur-fitur BurBir.\n");
         printf("\n");
@@ -83,6 +95,7 @@ void keluar() {
         printf("Anda belum login! Masuk terlebih dahulu untuk menikmati layanan BurBir.");
     } else {
         isLoggedIn = false;
+        printf("Anda berhasil logout. Sampai jumpa di pertemuan berikutnya!\n");
     }
 
 }

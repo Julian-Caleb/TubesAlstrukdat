@@ -118,6 +118,7 @@ int main() {
                 break;
             case 20:
                 // buat draf
+                BuatDraf();
                 break;
             case 21:
                 // lihat draf

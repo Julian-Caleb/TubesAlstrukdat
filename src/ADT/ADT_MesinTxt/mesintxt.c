@@ -41,7 +41,7 @@ void ADVTXTWORD() {
 }
 
 void CLOSETXT() {
-    printf("File selesai dibaca.\n");
+    printf("File selesai dibaca.\n\n");
     fclose(file);
 }
 

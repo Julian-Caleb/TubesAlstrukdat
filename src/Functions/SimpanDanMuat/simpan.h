@@ -1,5 +1,5 @@
-#ifndef _MUAT_H__
-#define _MUAT_H__
+#ifndef _SIMPAN_H__
+#define _SIMPAN_H__
 
 #include <sys/stat.h>
 #include "../../ADT/ADT_MesinTxt/mesintxt.h"
@@ -12,16 +12,16 @@
 #include "../Teman/teman.h"
 #include "./simpandanmuat.h"
 
-void muat(Word foldername);
+void simpan(Word foldername);
 
-void muatPengguna(Word foldername);
+// void simpanPengguna(Word foldername);
 
-void muatKicauan(Word foldername);
+// void simpanKicauan(Word foldername);
 
-void muatDraf(Word foldername);
+// void simpanDraf(Word foldername);
 
-void muatUtas(Word foldername);
+// void simpanUtas(Word foldername);
 
-// void muatBalasan(Word foldername);
+// void simpanBalasan(Word foldername);
 
 #endif

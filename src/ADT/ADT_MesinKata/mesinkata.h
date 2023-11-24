@@ -35,6 +35,8 @@ void printWordNoNewLine(Word word);
 
 boolean isWordEqual(Word word1, Word word2);
 
+boolean isEarlyCharInWordEqual(Word word_panjang, Word word_pendek);
+
 boolean isWordEqualCaseInsensitive(Word word1, Word word2);
 
 int CharToInt(char c);

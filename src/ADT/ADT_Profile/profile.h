@@ -56,6 +56,10 @@ void displayProfile(Profile profil);
 
 void gantiProfil();
 
-void lihatProfil(Profile profile);
+void lihatProfil(Word username);
+
+void aturJenisAkun();
+
+void ubahFotoProfil();
 
 #endif

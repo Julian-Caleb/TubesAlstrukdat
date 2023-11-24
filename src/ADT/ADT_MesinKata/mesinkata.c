@@ -135,6 +135,25 @@ boolean isWordEqual(Word word1, Word word2) {
 
 }
 
+boolean isEarlyCharInWordEqual(Word word_panjang, Word word_pendek) {
+
+    int i;
+    boolean check;
+    check = true;
+    if (word_pendek.Length >= word_panjang.Length) {
+        check = false;
+    } else {
+        for (i = 0; i < word_pendek.Length; i++) {
+            if (word_pendek.TabWord[i] != word_panjang.TabWord[i]) {
+                check = false;
+            }
+        }
+    }
+
+    return check;
+
+}
+
 boolean isWordEqualCaseInsensitive(Word word1, Word word2) {
 
     int i;

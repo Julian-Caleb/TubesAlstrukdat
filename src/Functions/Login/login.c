@@ -60,7 +60,7 @@ void masuk() {
         printf("Masukkan kata sandi: \n");
         STARTSENTENCE();
         printf("\n");
-        while (!isPasswordExist(currentWord)) {
+        while (!isPasswordExist(currentWord) || !isWordEqual(currentWord, arrayOfProfile.buffer[checkId(uname)].password)) {
             printf("Wah, kata sandi yang Anda masukkan belum tepat. Periksa kembali kata sandi Anda!\n");
             STARTSENTENCE();
             printf("\n");
@@ -68,7 +68,9 @@ void masuk() {
         pass = CopyToNewWord(currentWord);
         setUser(&currentUser, uname, pass, checkId(uname));
         isLoggedIn = true;
-        printf("Anda telah berhasil masuk dengan nama pengguna Tuan Bri. Mari menjelajahi BurBir bersama Ande-Ande Lumut!\n");
+        printf("Anda telah berhasil masuk dengan nama pengguna ");
+        printWordNoNewLine(uname);
+        printf(". Mari menjelajahi BurBir bersama Ande-Ande Lumut!\n"); 
         printf("\n");
     }
 

@@ -5,7 +5,7 @@ int main() {
 
     STARTSENTENCE();
     printf("Reading file...\n");
-    muatPengguna(currentWord);
+    muat(currentWord);
     STARTSENTENCE();
     printWord(currentWord);
 

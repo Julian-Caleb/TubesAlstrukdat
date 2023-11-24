@@ -70,17 +70,29 @@ OBJ_LOGIN = $(SRC_LOGIN:.c=.o)
 SRC_PCOLOR = Functions/PColor/pcolor.c
 OBJ_PCOLOR = $(SRC_PCOLOR:.c=.o)
 
-# Functions PColor
+# Functions Teman
 SRC_TEMAN = Functions/Teman/teman.c
 OBJ_TEMAN = $(SRC_TEMAN:.c=.o)
 
-# Functions PColor
+# Functions Utas
 SRC_UTAS = Functions/Utas/utas.c
 OBJ_UTAS = $(SRC_UTAS:.c=.o)
 
 # Functions SimpanDanMuat
-SRC_SIMPANDANMUAT = Functions/SimpanDanMuat/muat.c
+SRC_SIMPANDANMUAT = Functions/SimpanDanMuat/simpandanmuat.c
 OBJ_SIMPANDANMUAT = $(SRC_SIMPANDANMUAT:.c=.o)
+
+# Functions Simpan
+SRC_SIMPAN = Functions/SimpanDanMuat/simpan.c
+OBJ_SIMPAN = $(SRC_SIMPAN:.c=.o)
+
+# Functions Muat
+SRC_MUAT = Functions/SimpanDanMuat/muat.c
+OBJ_MUAT = $(SRC_MUAT:.c=.o)
+
+# Functions Commands
+SRC_COMMANDS = Functions/Commands/commands.c
+OBJ_COMMANDS = $(SRC_COMMANDS:.c=.o)
 
 .PHONY: all clean test
 
@@ -88,14 +100,14 @@ OBJ_SIMPANDANMUAT = $(SRC_SIMPANDANMUAT:.c=.o)
 all: main_program 
 
 # Compiling and building
-main_program: $(OBJ_DRIVER) $(OBJ_DATETIME) $(OBJ_MESINKAR) $(OBJ_MESINKATA) $(OBJ_MESINTXT) $(OBJ_MATRIX) $(OBJ_GRAF) $(OBJ_PERMINTAANPERTEMANAN) $(OBJ_KICAUAN) $(OBJ_BALASAN) $(OBJ_DRAF) $(OBJ_USER) $(OBJ_PROFILE) $(OBJ_LOGIN) $(OBJ_PCOLOR) $(OBJ_TEMAN) $(OBJ_SIMPANDANMUAT) $(OBJ_UTAS)
+main_program: $(OBJ_MAIN) $(OBJ_DATETIME) $(OBJ_MESINKAR) $(OBJ_MESINKATA) $(OBJ_MESINTXT) $(OBJ_MATRIX) $(OBJ_GRAF) $(OBJ_PERMINTAANPERTEMANAN) $(OBJ_KICAUAN) $(OBJ_BALASAN) $(OBJ_DRAF) $(OBJ_USER) $(OBJ_PROFILE) $(OBJ_LOGIN) $(OBJ_PCOLOR) $(OBJ_TEMAN) $(OBJ_SIMPANDANMUAT) $(OBJ_UTAS) $(OBJ_COMMANDS) $(OBJ_SIMPAN) $(OBJ_MUAT)
 	$(CC) $(CFLAGS) -o $@ $^
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c -o $@ $<
 
 clean:
-	rm -f main_program $(OBJ_DRIVER) $(OBJ_DATETIME) $(OBJ_MESINKAR) $(OBJ_MESINKATA) $(OBJ_MESINTXT) $(OBJ_MATRIX) $(OBJ_GRAF) $(OBJ_PERMINTAANPERTEMANAN) $(OBJ_KICAUAN) $(OBJ_BALASAN) $(OBJ_DRAF) $(OBJ_USER) $(OBJ_PROFILE) $(OBJ_LOGIN) $(OBJ_PCOLOR) $(OBJ_TEMAN) $(OBJ_SIMPANDANMUAT) $(OBJ_UTAS)
+	rm -f main_program $(OBJ_MAIN) $(OBJ_DATETIME) $(OBJ_MESINKAR) $(OBJ_MESINKATA) $(OBJ_MESINTXT) $(OBJ_MATRIX) $(OBJ_GRAF) $(OBJ_PERMINTAANPERTEMANAN) $(OBJ_KICAUAN) $(OBJ_BALASAN) $(OBJ_DRAF) $(OBJ_USER) $(OBJ_PROFILE) $(OBJ_LOGIN) $(OBJ_PCOLOR) $(OBJ_TEMAN) $(OBJ_SIMPANDANMUAT) $(OBJ_UTAS) $(OBJ_COMMANDS) $(OBJ_SIMPAN) $(OBJ_MUAT)
 
 run: all
 	./main_program	

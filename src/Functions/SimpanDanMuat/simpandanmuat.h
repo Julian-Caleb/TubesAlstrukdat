@@ -27,13 +27,5 @@ Word kicauanFile(Word foldername);
 Word utasFile(Word foldername);
 /*  Mengubah foldername menjadi path ke utas.config*/
 
-void simpan(Word foldername);
-/*  Fungsi simpan menyimpan kondisi ADT ke dalam file confignya 
-    masing-masing berdasarkan ADT dan spesifikasi. */ 
-
-void muat(Word foldername);
-/*  Fungsi muat menerima file dan menaruhnya kedalam masing-masing
-    ADT berdasarkan isi filenya. */
-
 
 #endif

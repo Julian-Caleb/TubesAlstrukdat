@@ -189,17 +189,98 @@ void gantiProfil() {
 
 }
 
-void lihatProfil(Profile profile) {
+void lihatProfil(Word username) {
+    if (currentUser.id != -1){
+        boolean found = false;
+        int i = 0;
+        while(!found && i<20){
+            if(isWordEqual(username, arrayOfProfile.buffer[i].username)){
+                found = true;
+            }
+            i++;
+        }
+        if(found){
+            i--;
+            if(isTeman(username) || arrayOfProfile.buffer[i].private){
+                displayProfile(arrayOfProfile.buffer[i]);
+            }
+            else{
+                printf("Wah, akun ");
+                printWordNoNewLine(username);
+                printf(" diprivat nih. Ikuti dulu yuk untuk bisa melihat profil ");
+                printWordNoNewLine(username);
+                printf("!\n");
+            }
+        }
+        else{
+            printf("Tidak ada pengguna dengan nama pengguna tersebut\n");
+        }
+    }
+    else{
+        printf("Anda belum login! Masuk terlebih dahulu untuk menikmati layanan BurBir.\n");
+    }
+}
 
-    if ((!profile.private) || (profile.private && isTeman(profile.username))) {
-        displayProfile(profile);
-        displayPFP(profile);
-    } else {
-        printf("Wah, akun");
-        printWord(profile.username);
-        printf("diprivat nih. Ikuti dulu yuk untuk bisa melihat profil");
-        printWord(profile.username);
+void aturJenisAkun() {
+    if(currentUser.id!=-1){
+        Word ya,tidak;
+        ya.Length = 2;
+        ya.TabWord[0] = 'Y';
+        ya.TabWord[1] = 'A';
+        tidak.Length = 5;
+        tidak.TabWord[0] = 'T';
+        tidak.TabWord[1] = 'I';
+        tidak.TabWord[2] = 'D';
+        tidak.TabWord[3] = 'A';
+        tidak.TabWord[4] = 'K';
+        if(arrayOfProfile.buffer[currentUser.id].private){
+            printf("Saat ini, akun Anda adalah akun Privat. Ingin mengubah ke akun Publik?\n");   
+        }
+        else{
+            printf("Saat ini, akun Anda adalah akun Publik. Ingin mengubah ke akun Privat?\n");
+        }
+        while(true){
+            printf("(YA/TIDAK)  ");
+            STARTSENTENCE();
+            if(isWordEqual(ya,currentWord)){
+                togglePrivate(&arrayOfProfile.buffer[currentUser.id]);
+                break;
+            }
+            else if(isWordEqual(tidak,currentWord)){
+                break;
+            }
+            printf("\n");
+        }
+    }
+    else{
+        printf("Anda belum login! Masuk terlebih dahulu untuk menikmati layanan BurBir.\n");
+    }
+
+}
+
+void ubahFotoProfil() {
+    if (currentUser.id!=-1){
+        Matrix profpic;
+        int i,j;
+        char format;
+        printf("Foto profil Anda saat ini adalah\n");
+        displayPFP(arrayOfProfile.buffer[currentUser.id]);
         printf("\n");
+        printf("Masukkan foto profil yang baru\n");
+        createMatrix(5,11,&profpic);
+        scanf("%c",&format);
+        for(i=0;i<5;i++){
+            for(j=0;j<11;j++){
+                scanf("%c",&format);
+                ELMT(profpic,i,j) = (int)format;
+            }
+        }
+        arrayOfProfile.buffer[currentUser.id].pfp = profpic;
+        printf("\n");
+        printf("Foto profil anda sudah berhasil diganti!\n");
+    }
+    else{
+        printf("Anda belum login! Masuk terlebih dahulu untuk menikmati layanan BurBir.\n");
     }
 
 }

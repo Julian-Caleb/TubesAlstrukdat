@@ -30,15 +30,15 @@ void simpan(Word foldername) {
     simpanPengguna(penggunaPath);
     simpanBalasan(balasanPath);
     simpanDraf(drafPath);
-    kicauanPath(kicauanPath);
-    utasPath(utasPath);
+    simpanKicauan(kicauanPath);
+    simpanUtas(utasPath);
 
 }
 
 void simpanPengguna(Word foldername) {
     FILE* file;
     // Pengguna
-    file = fopen(penggunaPath.TabWord, "w");
+    file = fopen(foldername.TabWord, "w");
     if (file == NULL) {
         printf("Waduh ada error :(");
     }
@@ -49,7 +49,7 @@ void simpanPengguna(Word foldername) {
 void simpanKicauan(Word foldername) {
     FILE* file;
     // Kicauan
-    file = fopen(kicauanPath.TabWord, "w");
+    file = fopen(foldername.TabWord, "w");
     if (file == NULL) {
         printf("Waduh ada error :(");
     }
@@ -60,7 +60,7 @@ void simpanKicauan(Word foldername) {
 void simpanDraf(Word foldername) {
     FILE* file;
     // Draf
-    file = fopen(drafPath.TabWord, "w");
+    file = fopen(foldername.TabWord, "w");
     if (file == NULL) {
         printf("Waduh ada error :(");
     }
@@ -71,7 +71,7 @@ void simpanDraf(Word foldername) {
 void simpanUtas(Word foldername) {
     FILE* file;
     // Utas
-    file = fopen(utasPath.TabWord, "w");
+    file = fopen(foldername.TabWord, "w");
     if (file == NULL) {
         printf("Waduh ada error :(");
     }
@@ -80,8 +80,9 @@ void simpanUtas(Word foldername) {
 }
 
 void simpanBalasan(Word foldername) {
+    FILE* file;
     // Balasan
-    file = fopen(balasanPath.TabWord, "w");
+    file = fopen(foldername.TabWord, "w");
     if (file == NULL) {
         printf("Waduh ada error :(");
     }

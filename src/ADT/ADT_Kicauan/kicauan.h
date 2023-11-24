@@ -8,6 +8,7 @@
 #include "../ADT_User/user.h"
 #include "../ADT_Profile/profile.h"
 #include "../ADT_Balasan/balasan.h"
+#include "../../Functions/Teman/teman.h"
 
 #define IDX_MIN 0
 #define IDX_UNDEF -999

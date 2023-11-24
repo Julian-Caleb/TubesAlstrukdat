@@ -16,6 +16,7 @@
 #include "./Functions/Login/login.h"
 #include "./Functions/PColor/pcolor.h"
 #include "./Functions/SimpanDanMuat/muat.h"
+#include "./Functions/SimpanDanMuat/simpan.h"
 #include "./Functions/Teman/teman.h"
 #include "./Functions/Utas/utas.h"
 
@@ -134,7 +135,8 @@ int main() {
                 // cetak utas
                 break;
             case 26:
-                // simpan
+                STARTSENTENCE();
+                simpanPengguna(currentWord);
                 break;
             case 27:
                 // muat

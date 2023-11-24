@@ -43,6 +43,7 @@ void simpanPengguna(Word foldername) {
         printf("Waduh ada error :(");
     }
     // Tulis di sini
+    fprintWord(file,arrayOfProfile.buffer[0].username);
     fclose(file);
 }
 

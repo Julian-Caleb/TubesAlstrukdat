@@ -12,7 +12,10 @@ void ADVTXT();
 
 void ADVTXTWORD();
 
+void CLOSETXT();
+
 void COPYWORD();
 
+void AutoRead();
 
 #endif

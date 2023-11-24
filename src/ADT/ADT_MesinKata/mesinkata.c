@@ -154,3 +154,20 @@ boolean isWordEqualCaseInsensitive(Word word1, Word word2) {
     return check;
 
 }
+
+int CharToInt(char c) {
+    return (((int) c )- 48);
+}
+
+int ExtractInteger(Word word) {
+    int total;
+    int i;
+    int tens;
+    total = 0;
+    tens = 1;
+    for (i = word.Length-1; i >= 0; i--) {
+        total = total + (CharToInt(word.TabWord[i]) * (tens));
+        tens *= 10;
+    }
+    return total;
+}

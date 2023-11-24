@@ -11,7 +11,7 @@ void STARTTXT(Word fileName) {
         printf("File opening failed.\n");
     }
     ADVTXT();
-    if (currentChar == ENTER || currentChar == EOF) {
+    if (currentChar == ENTER || currentChar == feof(file)) {
         EndWord = true;
     } else {
         EndWord = false;
@@ -38,11 +38,11 @@ void ADVTXTWORD() {
         }
     }
     COPYWORD();
-    if (currentChar == EOF) {
-        printf("File selesai dibaca.\n");
-        fclose(file);
-    }
+}
 
+void CLOSETXT() {
+    printf("File selesai dibaca.\n");
+    fclose(file);
 }
 
 void COPYWORD() {
@@ -50,7 +50,7 @@ void COPYWORD() {
     int i; 
 
     i = 0;
-    while ((currentChar != ENTER) && (i < NMax)) {
+    while ((currentChar != ENTER) && (i < NMax) && (currentChar != feof(file))) {
         currentWord.TabWord[i] = currentChar;
         ADVTXT();  
         i++;
@@ -58,4 +58,13 @@ void COPYWORD() {
     currentWord.TabWord[i] = '\0';
     currentWord.Length = i;    
 
+}
+
+void AutoRead() {
+    while (currentChar != feof(file)) {
+        printWord(currentWord);
+        ADVTXTWORD();
+    }
+    fclose(file);
+    printf("File selesai dibaca");
 }

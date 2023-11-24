@@ -3,6 +3,7 @@
 
 #include "../ADT_Boolean/boolean.h"
 #include "../ADT_Kicauan/kicauan.h"
+#include "../ADT_Profile/profile.h"
 #include <stdlib.h>
 
 #define Nil -1
@@ -16,9 +17,9 @@ typedef struct {
 #define Top(S) (S).TOP
 #define InfoTop(S) (S).T[(S).TOP]
 
-extern Draf draf;
+extern Draf draf[CAPACITYPENGGUNA];
 
-void CreateDrafExtern();
+void CreateDrafExtern(int n);
 
 boolean IsDrafEmpty();
 
@@ -30,6 +31,16 @@ void LihatDraf();
 
 void ExpandDraf();
 
+void ExpandDrafCurrentUser();
+
+void ExpandDrafCertainPengguna(int id);
+
 void ShrinkDraf();
+
+void ShrinkDrafCurrentUser();
+
+void ShrinkDrafCertainPengguna(int id);
+
+int currentUserDraf();
 
 #endif

@@ -225,7 +225,6 @@ void simpan(Word foldername) {
 void muat(Word foldername) {
 
     int n, i, j, k, l;
-    ArrayOfProfile arrayOfProfile;
 
     // Cek eksistensi folder
     struct stat folderStat;
@@ -237,37 +236,46 @@ void muat(Word foldername) {
         penggunaPath = penggunaFile(foldername);
         STARTTXT(penggunaPath);
         printWord(currentWord);
-        n = currentWord.TabWord[0];
-        for(i = 0; i < n; i++) {
+        n = CharToInt(currentWord.TabWord[0]);
+        ADVTXTWORD();
+        printWord(currentWord);
+        for (i = 0; i < n; i++) {
             // Uname
-            ADVTXTWORD();
             setUsername(&arrayOfProfile.buffer[i], currentWord);
+            ADVTXTWORD();
+            printWord(currentWord);
             // Password
-            ADVTXTWORD();
             setPassword(&arrayOfProfile.buffer[i], currentWord);
+            ADVTXTWORD();
+            printWord(currentWord);
             // Bio
-            ADVTXTWORD();
             setBio(&arrayOfProfile.buffer[i], currentWord);
+            ADVTXTWORD();
+            printWord(currentWord);
             // Nomor HP
-            ADVTXTWORD();
             setNomorHP(&arrayOfProfile.buffer[i], currentWord);
+            ADVTXTWORD();
+            printWord(currentWord);
             // Weton
-            ADVTXTWORD();
             setWeton(&arrayOfProfile.buffer[i], currentWord);
-            // Publik
             ADVTXTWORD();
-            if (currentWord.TabWord[1] == 'u') { // Publik
+            printWord(currentWord);
+            // Publik
+                if (currentWord.TabWord[1] == 'u') { // Publik
                 arrayOfProfile.buffer[i].private = true;
             }
+            ADVTXTWORD();
+            printWord(currentWord);
             // Matrix 5 baris
             createMatrix(5, 10, &arrayOfProfile.buffer[i].pfp);
             for (j = 0; j < 5; j++) {
-                ADVTXTWORD();
                 l = 0;
                 for (k = 0; k < 10; k++) {
                     arrayOfProfile.buffer[i].pfp.mem[j][k] = currentWord.TabWord[l];
                     l = l + 2;
                 }
+                ADVTXTWORD();
+                printWord(currentWord);
             }
             // id
             arrayOfProfile.buffer[i].id = i;
@@ -275,29 +283,68 @@ void muat(Word foldername) {
         // Teman
         CreateGraf(&grafPertemanan, 3);
         for (i = 0; i < n; j++) {
-            ADVTXTWORD();
             j = 0;
             for (k = 0; k < n; k++) {
                 grafPertemanan.mem[i][k] = currentWord.TabWord[j];
                 j = j + 2;
             }
-        }  
-        printMatrixPertemanan();
+            ADVTXTWORD();
+            printWord(currentWord);
+        }
         // Permintaan Pertemanan
-        // n = currentWord.TabWord[0];
-        // for (i = 0; i < n; i++) {
-        //     ADVTXTWORD();
-        //     currentWord.TabWord[0]; // Yang meminta
-        //     currentWord.TabWord[2]; // Yang menerima
-        //     currentWord.TabWord[4]; // Banyak teman yang meminta
-        // }
+        n = CharToInt(currentWord.TabWord[0]);
+        MakeEmpty();
+        ADVTXTWORD();
+        printWord(currentWord);
+        for (i = 0; i < n; i++) {
+            permintaanPertemanan.buffer[i].DariSiapa = CopyToNewWord(arrayOfProfile.buffer[(int) currentWord.TabWord[0]].username); // Yang meminta
+            permintaanPertemanan.buffer[i].UntukSiapa = CopyToNewWord(arrayOfProfile.buffer[(int) currentWord.TabWord[2]].username); // Yang menerima
+            permintaanPertemanan.buffer[i].banyakTeman = (int) currentWord.TabWord[4]; // Banyak teman yang meminta
+            ADVTXTWORD();
+            printWord(currentWord);            
+        }
+        permintaanPertemanan.head = 0;
+        permintaanPertemanan.tail = n-1;
+        permintaanPertemanan.length = n;
+        CLOSETXT();
+
+        // kicauan.config
+        kicauanPath = kicauanFile(foldername);
+        STARTTXT(kicauanPath);
+        n = CharToInt(currentWord.TabWord[0]);
+        ADVTXTWORD();
+        printWord(currentWord);            
+        CreateKicauanExtern(n);
+        for (i = 0; i < n; i++) {
+            kicauan.buffer[i].index = CharToInt(currentWord.TabWord[0]);
+            ADVTXTWORD();
+            printWord(currentWord);
+            kicauan.buffer[i].kicau = CopyToNewWord(currentWord);
+            ADVTXTWORD();
+            printWord(currentWord);
+            kicauan.buffer[i].like = CharToInt(currentWord.TabWord[0]);
+            ADVTXTWORD();
+            printWord(currentWord);
+            kicauan.buffer[i].nama = CopyToNewWord(currentWord);
+            ADVTXTWORD();
+            printWord(currentWord);
+            kicauan.buffer[i].time.day = CharToInt(currentWord.TabWord[0]) * 10 + CharToInt(currentWord.TabWord[1]);
+            kicauan.buffer[i].time.month = CharToInt(currentWord.TabWord[3]) * 10 + CharToInt(currentWord.TabWord[4]);
+            kicauan.buffer[i].time.year = CharToInt(currentWord.TabWord[6]) * 1000 + CharToInt(currentWord.TabWord[7]) * 100 + CharToInt(currentWord.TabWord[8]) * 10 + CharToInt(currentWord.TabWord[9]) * 1;
+            kicauan.buffer[i].time.hour = CharToInt(currentWord.TabWord[11]) * 10 + CharToInt(currentWord.TabWord[12]);
+            kicauan.buffer[i].time.minute = CharToInt(currentWord.TabWord[14]) * 10 + CharToInt(currentWord.TabWord[15]);
+            kicauan.buffer[i].time.second = CharToInt(currentWord.TabWord[17]) * 10 + CharToInt(currentWord.TabWord[18]);
+            printf("test");
+            ADVTXTWORD();
+            printWord(currentWord);
+        }
+
         balasanPath = balasanFile(foldername);
         printWord(balasanPath);
         
         drafPath = drafFile(foldername);
         printWord(drafPath);
-        kicauanPath = kicauanFile(foldername);
-        printWord(kicauanPath);
+
         utasPath = utasFile(foldername);
         printWord(utasPath);
 

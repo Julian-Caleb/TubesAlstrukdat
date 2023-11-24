@@ -1,11 +1,14 @@
 #include <stdio.h>
-#include "simpandanmuat.h"
+#include "muat.h"
 
 int main() {
 
     STARTSENTENCE();
-    muat(currentWord);
-    
+    printf("Reading file...\n");
+    muatPengguna(currentWord);
+    STARTSENTENCE();
+    printWord(currentWord);
+
 
     return 0;
 

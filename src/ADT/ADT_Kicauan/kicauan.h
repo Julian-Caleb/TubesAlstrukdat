@@ -38,7 +38,7 @@ boolean isKicauanFull();
 
 boolean isKicauanEmpty();
 
-void CreateKicauanExtern();
+void CreateKicauanExtern(int n);
 
 Kicau MakeKicau();
 

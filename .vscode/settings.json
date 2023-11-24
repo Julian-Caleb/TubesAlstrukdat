@@ -16,6 +16,8 @@
         "stdio.h": "c",
         "utas.h": "c",
         "draf.h": "c",
-        "balasan.h": "c"
+        "balasan.h": "c",
+        "mesintxt.h": "c",
+        "muat.h": "c"
     }
 }

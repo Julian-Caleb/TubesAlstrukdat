@@ -4,11 +4,20 @@
 int main() {
 
     STARTSENTENCE();
+    printf("Reading...\n");
     STARTTXT(currentWord);
     printWord(currentWord);
+
     ADVTXTWORD();
     printWord(currentWord);
-    printf("%c", currentChar);
+
+    ADVTXTWORD();
+    printWord(currentWord);
+
+    CLOSETXT();
+
+    // STARTSENTENCE();
+    // printWord(currentWord);
 
     return 0;
 }

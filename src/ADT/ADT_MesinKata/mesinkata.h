@@ -23,8 +23,6 @@ void IgnoreBlanks();
 
 void STARTWORD();
 
-// void ADVWORD();
-
 void CopyWord();
 
 void STARTSENTENCE();
@@ -38,5 +36,9 @@ void printWordNoNewLine(Word word);
 boolean isWordEqual(Word word1, Word word2);
 
 boolean isWordEqualCaseInsensitive(Word word1, Word word2);
+
+int CharToInt(char c);
+
+int ExtractInteger(Word word);
 
 #endif

@@ -3,7 +3,7 @@
 
 int main() {
 
-    CreateKicauanExtern();
+    CreateKicauanExtern(69);
 
     daftar();
     masuk();

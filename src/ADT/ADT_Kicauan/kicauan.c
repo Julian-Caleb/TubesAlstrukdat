@@ -11,12 +11,12 @@ boolean isKicauanEmpty() {
     return (kicauan.nEffKicau == 0);
 }
 
-void CreateKicauanExtern() {
-    kicauan.buffer = (Kicau*)malloc(1 * sizeof(Kicau));
+void CreateKicauanExtern(int n) {
+    kicauan.buffer = (Kicau*)malloc(n * sizeof(Kicau));
 
     if (kicauan.buffer != NULL) {
         kicauan.nEffKicau = 0;
-        kicauan.capacity = 1;
+        kicauan.capacity = n;
         kicauan.nEffUtas = 0;
     } else {
         printf("Alokasi memori gagal!\n");

@@ -9,9 +9,9 @@
 #include "../../Functions/Login/login.h"
 
 #define Nil -1 
-#define CAPACITYTEMAN 20*19
+#define CAPACITYTEMAN 20
 
-typedef int Address;
+typedef int AddressInt;
 
 typedef struct {
     Word DariSiapa;
@@ -21,8 +21,8 @@ typedef struct {
 
 typedef struct {
     Pertemanan buffer[CAPACITYTEMAN];
-    Address head;
-    Address tail;
+    AddressInt head;
+    AddressInt tail;
     int length;
 } PermintaanPertemanan;
 

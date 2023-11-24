@@ -11,7 +11,7 @@ SRC_TEST = test.c
 OBJ_TEST = $(SRC_TEST:.c=.o)
 
 # Driver program
-SRC_DRIVER = ADT/ADT_Balasan/driver.c
+SRC_DRIVER = Functions/SimpanDanMuat/driver.c
 OBJ_DRIVER = $(SRC_DRIVER:.c=.o)
 
 # ADT Datetime
@@ -79,7 +79,7 @@ SRC_UTAS = Functions/Utas/utas.c
 OBJ_UTAS = $(SRC_UTAS:.c=.o)
 
 # Functions SimpanDanMuat
-SRC_SIMPANDANMUAT = Functions/SimpanDanMuat/simpandanmuat.c
+SRC_SIMPANDANMUAT = Functions/SimpanDanMuat/muat.c
 OBJ_SIMPANDANMUAT = $(SRC_SIMPANDANMUAT:.c=.o)
 
 .PHONY: all clean test

@@ -5,7 +5,7 @@
 
 int main() {
 
-    CreateKicauanExtern();
+    CreateKicauanExtern(10);
 
     daftar();
     daftar();

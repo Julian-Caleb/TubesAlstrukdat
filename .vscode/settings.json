@@ -18,7 +18,8 @@
     "draf.h": "c",
     "balasan.h": "c",
     "mesintxt.h": "c",
-    "muat.h": "c"
+    "muat.h": "c",
+    "simpan.h": "c"
   },
   "C_Cpp_Runner.msvcBatchPath": "",
   "C_Cpp_Runner.cCompilerPath": "clang",

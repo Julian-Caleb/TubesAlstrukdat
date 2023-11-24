@@ -154,39 +154,43 @@ void displayProfile(Profile profil)
 void gantiProfil() {
 
     int id;
+    if (currentUser.id != -1){
+        id = checkId(currentUser.username);
+        displayProfile(arrayOfProfile.buffer[id]);
 
-    id = checkId(currentUser.username);
-    displayProfile(arrayOfProfile.buffer[id]);
-
-    printf("Masukkan Bio Akun:\n");
-    STARTSENTENCE();
-    while (!isBioValid(currentWord)) {
-        printf("Bio tidak valid. Masukkan lagi yuk!\n");
+        printf("Masukkan Bio Akun:\n");
         STARTSENTENCE();
-    }
-    setBio(&arrayOfProfile.buffer[id], currentWord);
-    printf("\n");
+        while (!isBioValid(currentWord)) {
+            printf("Bio tidak valid. Masukkan lagi yuk!\n");
+            STARTSENTENCE();
+        }
+        setBio(&arrayOfProfile.buffer[id], currentWord);
+        printf("\n");
 
-    printf("Masukkan No HP:\n");
-    STARTSENTENCE();
-    while (!isNomorHPValid(currentWord)) {
-        printf("No HP tidak valid. Masukkan lagi yuk!\n");
+        printf("Masukkan No HP:\n");
         STARTSENTENCE();
-    }
-    setNomorHP(&arrayOfProfile.buffer[id], currentWord);
-    printf("\n");
+        while (!isNomorHPValid(currentWord)) {
+            printf("No HP tidak valid. Masukkan lagi yuk!\n");
+            STARTSENTENCE();
+        }
+        setNomorHP(&arrayOfProfile.buffer[id], currentWord);
+        printf("\n");
 
-    printf("Masukkan Weton:\n");
-    STARTSENTENCE();
-    while (!isWetonValid(currentWord)) {
-        printf("Weton tidak valid. Masukkan lagi yuk!\n");
+        printf("Masukkan Weton:\n");
         STARTSENTENCE();
-    }
-    setWeton(&arrayOfProfile.buffer[id], currentWord);    
-    printf("\n");
+        while (!isWetonValid(currentWord)) {
+            printf("Weton tidak valid. Masukkan lagi yuk!\n");
+            STARTSENTENCE();
+        }
+        setWeton(&arrayOfProfile.buffer[id], currentWord);    
+        printf("\n");
 
-    printf("Profil Anda sudah berhasil diperbarui!\n");
-    printf("\n");
+        printf("Profil Anda sudah berhasil diperbarui!\n");
+        printf("\n");
+    }
+    else{
+        printf("Anda belum login! Masuk terlebih dahulu untuk menikmati layanan BurBir.\n");
+    }
 
 }
 

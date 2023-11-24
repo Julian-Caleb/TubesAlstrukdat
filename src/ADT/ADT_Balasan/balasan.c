@@ -35,39 +35,44 @@ AddressBalasan makeBalasan(int idBalasanBaru) {
 void Balas(int index, int idBalasan) {
     int idBalasanBaru;
     AddressBalasan b, newb;
-    if (!isIdExist(index)) {
-        printf("Wah, tidak terdapat kicauan yang ingin Anda balas!");
-    } else if (!(idBalasan == -1 || (idBalasan >= 1 && idBalasan <= TotalBalasanDariKicauan(index)))) {
-        printf("Wah, tidak terdapat balasan yang ingin Anda balas!");
-    } else if (arrayOfProfile.buffer[index-1].private && !isTeman(kicauan.buffer[index-1].nama)) {
-        printf("Wah, akun tersebut merupakan akun privat dan anda belum berteman dengan akun tersebut!");    
-    } else {
-        idBalasanBaru = MaxIdBalasan(kicauan.buffer[index-1].balasan);
-        newb = makeBalasan(idBalasanBaru + 1);
-        if (idBalasan == -1) {
-            if (kicauan.buffer[index-1].balasan == NULL) {
-                kicauan.buffer[index-1].balasan = newb;
-            } else {
-                b = kicauan.buffer[index-1].balasan;
-                while (b->sibling != NULL) {
-                    b = b->sibling;
-                }
-                b->sibling = newb;
-            }        
+    if(isLoggedIn){
+        if (!isIdExist(index)) {
+            printf("Wah, tidak terdapat kicauan yang ingin Anda balas!");
+        } else if (!(idBalasan == -1 || (idBalasan >= 1 && idBalasan <= TotalBalasanDariKicauan(index)))) {
+            printf("Wah, tidak terdapat balasan yang ingin Anda balas!");
+        } else if (arrayOfProfile.buffer[index-1].private && !isTeman(kicauan.buffer[index-1].nama)) {
+            printf("Wah, akun tersebut merupakan akun privat dan anda belum berteman dengan akun tersebut!");    
         } else {
-            b = CariBalasanDariKicau(index, idBalasan);
-            if (b->child == NULL) {
-                b->child = newb;
+            idBalasanBaru = MaxIdBalasan(kicauan.buffer[index-1].balasan);
+            newb = makeBalasan(idBalasanBaru + 1);
+            if (idBalasan == -1) {
+                if (kicauan.buffer[index-1].balasan == NULL) {
+                    kicauan.buffer[index-1].balasan = newb;
+                } else {
+                    b = kicauan.buffer[index-1].balasan;
+                    while (b->sibling != NULL) {
+                        b = b->sibling;
+                    }
+                    b->sibling = newb;
+                }        
             } else {
-                b = b->child;
-                while (b->sibling != NULL) {
-                    b = b->sibling;
+                b = CariBalasanDariKicau(index, idBalasan);
+                if (b->child == NULL) {
+                    b->child = newb;
+                } else {
+                    b = b->child;
+                    while (b->sibling != NULL) {
+                        b = b->sibling;
+                    }
+                    b->sibling = newb;
                 }
-                b->sibling = newb;
             }
+            printf("Selamat, balasan telah diterbitkan!\n");
+            CetakBalasanSingular(newb);
         }
-        printf("Selamat, balasan telah diterbitkan!\n");
-        CetakBalasanSingular(newb);
+    }
+    else{
+        printf("Anda belum login! Masuk terlebih dahulu untuk menikmati layanan BurBir.\n");
     }
 }
 
@@ -105,7 +110,12 @@ void CetakBalasanSingular(AddressBalasan balasan) {
 }
 
 void CetakBalasan(int index) {
-    CetakBalasanIndented(kicauan.buffer[index-1].balasan, 0);
+    if(isLoggedIn){
+        CetakBalasanIndented(kicauan.buffer[index-1].balasan, 0);
+    }
+    else{
+        printf("Anda belum login! Masuk terlebih dahulu untuk menikmati layanan BurBir.\n");
+    }
 }
 
 void CetakBalasanIndented(AddressBalasan balasan, int level) {
@@ -146,28 +156,33 @@ void CetakBalasanIndented(AddressBalasan balasan, int level) {
 
 void HapusBalasan(int index, int idBalasan) {
     AddressBalasan b, beforeb;
-    if (!isIdExist(index)) {
-        printf("Wah, tidak terdapat kicauan yang ingin Anda hapus balasannya!");
-    } else if (!(idBalasan == -1 || (idBalasan >= 1 && idBalasan <= TotalBalasanDariKicauan(index)))) {
-        printf("Wah, tidak terdapat balasan yang ingin Anda hapus!");
-    } else {
-        b = CariBalasanDariKicau(index, idBalasan);
-        if (!isWordEqual(b->nama, currentUser.username)) {
-            printf("Ini bukan balasan Anda!");
+    if(isLoggedIn){
+        if (!isIdExist(index)) {
+            printf("Wah, tidak terdapat kicauan yang ingin Anda hapus balasannya!");
+        } else if (!(idBalasan == -1 || (idBalasan >= 1 && idBalasan <= TotalBalasanDariKicauan(index)))) {
+            printf("Wah, tidak terdapat balasan yang ingin Anda hapus!");
         } else {
-            if (kicauan.buffer[index-1].balasan == b) {
-                kicauan.buffer[index-1].balasan = b->sibling;
+            b = CariBalasanDariKicau(index, idBalasan);
+            if (!isWordEqual(b->nama, currentUser.username)) {
+                printf("Ini bukan balasan Anda!");
             } else {
-                beforeb = CariParent(kicauan.buffer[index-1].balasan, b);
-                if (beforeb != NULL) {
-                    beforeb->child = b->sibling;
+                if (kicauan.buffer[index-1].balasan == b) {
+                    kicauan.buffer[index-1].balasan = b->sibling;
                 } else {
-                    beforeb = CariPreSibling(kicauan.buffer[index-1].balasan, b);
-                    beforeb->sibling = b->sibling;
+                    beforeb = CariParent(kicauan.buffer[index-1].balasan, b);
+                    if (beforeb != NULL) {
+                        beforeb->child = b->sibling;
+                    } else {
+                        beforeb = CariPreSibling(kicauan.buffer[index-1].balasan, b);
+                        beforeb->sibling = b->sibling;
+                    }
                 }
+                DealokasiBalasan(b);
             }
-            DealokasiBalasan(b);
         }
+    }
+    else{
+        printf("Anda belum login! Masuk terlebih dahulu untuk menikmati layanan BurBir.\n");
     }
 }
 

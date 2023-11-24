@@ -84,25 +84,25 @@ int main() {
                 daftarTeman();
                 break;
             case 9:
-                //hapus teman
+                hapusTeman();
                 break;
             case 10:
-                // tambah teman
+                TambahTeman();
                 break;
             case 11:
-                // daftar friend request
+                DaftarPermintaanPertemanan();
                 break;
             case 12:
-                // setujui pertemnanan
+                SetujuiPertemanan();
                 break;
             case 13:
-                // kicau
+                AddKicau();
                 break;
             case 14:
-                // kicauan
+                PrintKicau();
                 break;
             case 15:
-                // suka kicauan
+                SukaKicau(oneIntParam(currentWord));
                 break;
             case 16:
                 // ubah kicauan
